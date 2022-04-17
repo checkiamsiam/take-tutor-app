@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import About from './components/About/About';
 import Banner from './components/Banner/Banner';
+import Checkout from './components/Checkout/Checkout';
 import Contact from './components/Contact/Contact';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
@@ -23,6 +24,7 @@ function App() {
         ]}></Route>
         <Route path='/about' element={<About></About>}></Route>
         <Route path='/services' element={<Services></Services>}></Route>
+        <Route path='/services/:servicesId' element={<Checkout></Checkout>}></Route>
         <Route path='/contact' element={<Contact></Contact>}></Route>
         <Route path='/signup' element={<Signup></Signup>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>

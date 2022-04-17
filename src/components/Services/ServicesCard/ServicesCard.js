@@ -1,6 +1,9 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const ServicesCard = ({ service }) => {
+  const navigate = useNavigate();
+  const path = `services/checkoutSevieceNo${service.id}`;
   return (
     <div className="px-4 md:w-1/3 relative mt-2">
       <div className="h-full rounded-xl shadow-cla-blue bg-gradient-to-r from-indigo-50 to-blue-50 overflow-hidden">
@@ -11,7 +14,7 @@ const ServicesCard = ({ service }) => {
           <h1 className="title-font text-lg font-medium text-gray-600 mb-3">Cost: <span className='text-4xl'>{service.price}</span>$/mo</h1>
           <p className="leading-relaxed mb-6">{service.details}</p>
           <div className="flex items-center flex-wrap absolute bottom-0 py-2">
-            <button className="bg-gradient-to-r from-cyan-400 to-blue-400 hover:scale-105 drop-shadow-md  shadow-cla-blue px-4 py-1 rounded-lg ">Checkout</button>
+            <button onClick={()=> navigate(path)} className="bg-gradient-to-r from-cyan-400 to-blue-400 hover:scale-105 drop-shadow-md  shadow-cla-blue px-4 py-1 rounded-lg ">Checkout</button>
 
           </div>
         </div>

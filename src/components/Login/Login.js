@@ -3,6 +3,8 @@ import { useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWith
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import Loader from '../../Loader/Loader';
+import toast, { Toaster } from 'react-hot-toast';
+
 
 const Login = () => {
   let navigate = useNavigate();
@@ -28,7 +30,7 @@ const Login = () => {
   error3 && console.log(error3.message);
   error4 && console.log(error4.message);
 
-  if (loading1 || loading2 || loading3 || sending) {
+  if (loading1 || loading2 || loading3) {
     return <Loader></Loader>
   }
 
@@ -42,18 +44,26 @@ const Login = () => {
     setpassword(e.target.value)
   }
   const handleFBSignin = async () => {
-   await signInWithFacebook()
-   await navigate(from, { replace: true });
+    await signInWithFacebook()
+    await navigate(from, { replace: true });
   }
   const handleGoogleSignin = async () => {
-   await signInWithGoogle()
-   await navigate(from, { replace: true });
+    await signInWithGoogle()
+    await navigate(from, { replace: true });
   }
   const handleSubmit = async () => {
     await signInWithEmailAndPassword(email, password)
     await navigate(from, { replace: true });
   }
-
+  const handleReset = async () => {
+    await sendPasswordResetEmail(email);
+    await toast('Reset mail sent.', {
+      style: {
+        marginTop: '30vh',
+        border: '1px solid pink',
+      },
+    })
+  }
   return (
     <div className='container mx-auto my-5'>
       <form className="bg-white shadow-xl mb-4 flex flex-wrap justify-center">
@@ -100,10 +110,7 @@ const Login = () => {
           >Login</button>
 
 
-          <p onClick={async () => {
-            await sendPasswordResetEmail(email);
-            alert('Sent email');
-          }}
+          <p onClick={handleReset}
             className="block w-full text-sm text-right text-white hover:text-gray-300 cursor-pointer"
             href="#"
           >Forgot Password?</p>
@@ -137,8 +144,10 @@ const Login = () => {
             </div>
           </div>
         </div>
-      </form>
-    </div>
+      </form >
+      <Toaster>
+      </Toaster>
+    </div >
   );
 };
 

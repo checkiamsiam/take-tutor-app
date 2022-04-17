@@ -1,0 +1,29 @@
+[
+  {
+     "id": 1 ,
+      "name": "Home Tutor for Baby",
+      "price": 10,
+      "img" : "https://i.ibb.co/mBMqXgG/baby-service.jpg",
+      "details": "You can hire me as a home tutor for your baby for very basic tuition. and i will teach your child all the subject he have from his kinder garden"
+
+    },
+    
+  {
+     "id": 2 ,
+      "name": "Coaching in my home",
+      "price": 5,
+      "img" : "https://i.ibb.co/d5BwB6d/cocing-service.jpg",
+      "details": "I have a mini Coaching center in my home students come here at 7am or 9pm only if your child have free time in this you can send me for Coaching"
+
+    },
+    
+  {
+     "id": 3 ,
+      "name": "Privet Tuition for intermediate student",
+      "price": 15,
+      "img" : "https://i.ibb.co/hfYfDVm/privet-service.jpg",
+      "details": "I also teach intermediate level students about math and physics subject though i know english but adding english the cost will updated by 20$"
+
+    }
+    
+  ]

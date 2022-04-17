@@ -24,4 +24,4 @@ yarn-error.log*
 
 # cusotom
 
-firebase.init.js
+src/firebase.init.js

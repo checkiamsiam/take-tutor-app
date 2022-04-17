@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useCreateUserWithEmailAndPassword, useSignInWithFacebook, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import { async } from '@firebase/util';
+import Loader from '../../Loader/Loader';
 
 
 const Signup = () => {
@@ -26,7 +27,7 @@ const Signup = () => {
   error4 && console.log(error4.message);
 
   if (loading1 || updating || loading2 || loading3) {
-    return <p>Loading...</p>;
+    return <Loader></Loader>
   }
 
 

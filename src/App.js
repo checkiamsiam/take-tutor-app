@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import About from './components/About/About';
 import Banner from './components/Banner/Banner';
+import Blogs from './components/Blog/Blogs';
 import Checkout from './components/Checkout/Checkout';
 import Contact from './components/Contact/Contact';
 import Footer from './components/Footer/Footer';
@@ -29,6 +30,7 @@ function App() {
           <Checkout></Checkout>
         </ProtectedPage>}></Route>
         <Route path='/contact' element={<Contact></Contact>}></Route>
+        <Route path='/blogs' element={<Blogs></Blogs>}></Route>
         <Route path='/signup' element={<Signup></Signup>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='*' element={<NotFound></NotFound>}></Route>

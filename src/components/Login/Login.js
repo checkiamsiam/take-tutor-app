@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithFacebook, useSignInWithGoogle } from 'react-firebase-hooks/auth';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
+import Loader from '../../Loader/Loader';
 
 const Login = () => {
+  let navigate = useNavigate();
+  let location = useLocation();
+  let from = location.state?.from?.pathname || "/";
   const [agree, setAgree] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setpassword] = useState('');
@@ -25,7 +29,7 @@ const Login = () => {
   error4 && console.log(error4.message);
 
   if (loading1 || loading2 || loading3 || sending) {
-    return <p>Loading...</p>;
+    return <Loader></Loader>
   }
 
   const handleCheck = (e) => {
@@ -37,7 +41,18 @@ const Login = () => {
   const handlePasswordValue = (e) => {
     setpassword(e.target.value)
   }
-  console.log(email, password);
+  const handleFBSignin = async () => {
+   await signInWithFacebook()
+   await navigate(from, { replace: true });
+  }
+  const handleGoogleSignin = async () => {
+   await signInWithGoogle()
+   await navigate(from, { replace: true });
+  }
+  const handleSubmit = async () => {
+    await signInWithEmailAndPassword(email, password)
+    await navigate(from, { replace: true });
+  }
 
   return (
     <div className='container mx-auto my-5'>
@@ -78,7 +93,7 @@ const Login = () => {
             <input onClick={handleCheck} type="checkbox" /> agree terms and conditions
           </label>
           <button
-            onClick={() => signInWithEmailAndPassword(email, password)}
+            onClick={handleSubmit}
             className="block w-full bg-orange-400 hover:bg-orange-500 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline disabled:bg-orange-600"
             type="submit"
             disabled={!agree}
@@ -108,14 +123,14 @@ const Login = () => {
           <div className="flex flex-wrap justify-center">
             <div className="w-full sm:w-1/2 sm:pr-2 mb-3 sm:mb-0">
               <button
-                onClick={() => signInWithFacebook()}
+                onClick={handleFBSignin}
                 className="w-full bg-blue-800 hover:bg-blue-900 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline"
                 type="button"
               >Login with Facebook</button>
             </div>
             <div className="w-full sm:w-1/2 sm:pl-2">
               <button
-                onClick={() => signInWithGoogle()}
+                onClick={handleGoogleSignin}
                 className="w-full bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline"
                 type="button"
               >Login with Google</button>

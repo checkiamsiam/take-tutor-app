@@ -1,9 +1,24 @@
 import React from 'react';
+import  profile from '../../images/my-bc2.png';
 
 const About = () => {
   return (
     <div>
-      <h1>siam s</h1>
+      <div class="container mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 h-screen">
+          <div class="max-h-96 md:h-screen">
+            <img class="w-screen h-screen object-cover object-top" src={profile} alt=""/>
+          </div>
+          <div class="flex bg-gray-100 p-10">
+            <div class="mb-auto mt-auto max-w-lg">
+              <h1 class="text-3xl uppercase">Jun Santilla</h1>
+              <p class="font-semibold mb-5">Web Developer</p>
+              <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.</p>
+              <button class="bg-black rounded-md py-3 px-7 mt-6 text-white">Email Me</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

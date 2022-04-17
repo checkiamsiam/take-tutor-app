@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import logo from '../../images/logo.jpg'
 
 const Header = () => {
@@ -9,10 +9,10 @@ const Header = () => {
     <div>
       <nav className="bg-gray-50 border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-800">
         <div className="container flex flex-wrap justify-between items-center mx-auto">
-          <a href="/" className="flex items-center text-lg">
+          <Link to="/" className="flex items-center text-lg">
             <img src={logo} className="mr-3 h-9 sm:h-10 rounded-full" alt="Flowbite Logo" />
             <span className="text-sky-400 self-center text-xl font-semibold whitespace-nowrap dark:text-white md:text-2xl font-serif ">Take Tutor</span>
-          </a>
+          </Link>
           <div className="flex md:order-2">
             <button onClick={()=> navigate('/login')} type="button" className="text-white bg-sky-400 hover:bg-sky-600  focus:ring-sky-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-sky-800">Log in</button>
             <button onClick={() => setOpen(!open)} data-collapse-toggle="mobile-menu" type="button" className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="mobile-menu-4" aria-expanded="false">

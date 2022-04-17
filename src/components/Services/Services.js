@@ -16,14 +16,6 @@ const Services = () => {
           </div>
         </section>
       </div>
-
-
-
-
-
-
-
-
     </div>
   );
 };

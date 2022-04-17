@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import useServices from '../../hooks/useServices';
 
 const Checkout = () => {
+  const [services, setServices] = useServices();
+  const { servicesId } = useParams();
+  const selectedService = services.find(service => service.id === servicesId);
+
+
   return (
-    <div className='container md:mx-auto md:w-1/2 px-5 py-9'>
+    <div className='container md:mx-auto md:w-1/2 px-5 py-9 border-2 border-red-100 md:m-2'>
       <h1 className='text-4xl text-sky-500 mb-3 md:text-center'>Checkout</h1>
       <form>
         <div className="relative z-0 mb-6 w-full group">

@@ -1,8 +1,12 @@
+import { signOut } from 'firebase/auth';
 import React, { useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
+import auth from '../../firebase.init';
 import logo from '../../images/logo.jpg'
 
 const Header = () => {
+  const [user] = useAuthState(auth);
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   return (
@@ -14,7 +18,8 @@ const Header = () => {
             <span className="text-sky-400 self-center text-xl font-semibold whitespace-nowrap dark:text-white md:text-2xl font-serif ">Take Tutor</span>
           </Link>
           <div className="flex md:order-2">
-            <button onClick={()=> navigate('/login')} type="button" className="text-white bg-sky-400 hover:bg-sky-600  focus:ring-sky-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-sky-800">Log in</button>
+            {!user ? <button onClick={() => navigate('/login')} type="button" className="text-white bg-sky-400 hover:bg-sky-600  focus:ring-sky-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-sky-800">Log in</button>
+              : <button onClick={()=> signOut(auth)} type="button" className="text-white bg-sky-400 hover:bg-sky-600  focus:ring-sky-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-sky-800">Sign Out</button>}
             <button onClick={() => setOpen(!open)} data-collapse-toggle="mobile-menu" type="button" className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="mobile-menu-4" aria-expanded="false">
               <span className="sr-only">Open main menu</span>
               {!open ? <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd"></path></svg> :

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useSignInWithEmailAndPassword, useSignInWithFacebook, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithFacebook, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
 import auth from '../../firebase.init';
 
@@ -15,12 +15,16 @@ const Login = () => {
   ] = useSignInWithEmailAndPassword(auth);
   const [signInWithGoogle, user2, loading2, error2] = useSignInWithGoogle(auth);
   const [signInWithFacebook, user3, loading3, error3] = useSignInWithFacebook(auth);
+  const [sendPasswordResetEmail, sending, error4] = useSendPasswordResetEmail(
+    auth
+  );
 
   error1 && console.log(error1.message);
   error2 && console.log(error2.message);
   error3 && console.log(error3.message);
+  error4 && console.log(error4.message);
 
-  if (loading1 || loading2 || loading3) {
+  if (loading1 || loading2 || loading3 || sending) {
     return <p>Loading...</p>;
   }
 
@@ -81,7 +85,10 @@ const Login = () => {
           >Login</button>
 
 
-          <p
+          <p onClick={async () => {
+            await sendPasswordResetEmail(email);
+            alert('Sent email');
+          }}
             className="block w-full text-sm text-right text-white hover:text-gray-300 cursor-pointer"
             href="#"
           >Forgot Password?</p>

@@ -1,7 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Login = () => {
+  const [agree, setAgree] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setpassword] = useState('');
+  const handleCheck = (e) => {
+    setAgree(!agree)
+  }
+  const handleEmailValue = (e) => {
+    setEmail(e.target.value)
+  }
+  const handlePasswordValue = (e) => {
+    setpassword(e.target.value)
+  }
+  console.log(email , password);
+
   return (
     <div className='container mx-auto my-5'>
       <form className="bg-white shadow-xl mb-4 flex flex-wrap justify-center">
@@ -21,6 +35,7 @@ const Login = () => {
           </p>
           <div className="mb-4">
             <input
+              onChange={handleEmailValue}
               className="appearance-none border w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               type="email"
               placeholder="Email"
@@ -29,6 +44,7 @@ const Login = () => {
           </div>
           <div className="mb-6">
             <input
+              onChange={handlePasswordValue}
               className="appearance-none border w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
               type="password"
               placeholder="Password"
@@ -36,11 +52,12 @@ const Login = () => {
             />
           </div>
           <label className="block text-sm mb-4">
-            <input type="checkbox" /> agree terms and conditions
+            <input onClick={handleCheck} type="checkbox" /> agree terms and conditions
           </label>
           <button
-            className="block w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline"
+            className="block w-full bg-orange-400 hover:bg-orange-500 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline disabled:bg-orange-600"
             type="submit"
+            disabled={!agree}
           >Login</button>
 
 

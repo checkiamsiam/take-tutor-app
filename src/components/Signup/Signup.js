@@ -2,8 +2,12 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useCreateUserWithEmailAndPassword, useSignInWithFacebook, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
+import { useSendEmailVerification } from 'react-firebase-hooks/auth';
 import { async } from '@firebase/util';
 import Loader from '../../Loader/Loader';
+import toast, { Toaster } from 'react-hot-toast';
+
+
 
 
 const Signup = () => {
@@ -14,6 +18,8 @@ const Signup = () => {
   const [password, setpassword] = useState('');
   const [signInWithGoogle, user1, loading2, error3] = useSignInWithGoogle(auth);
   const [signInWithFacebook, user3, loading3, error4] = useSignInWithFacebook(auth);
+  const [sendEmailVerification, sending] = useSendEmailVerification(auth);
+
   const [
     createUserWithEmailAndPassword,
     user2,
@@ -28,6 +34,9 @@ const Signup = () => {
 
   if (loading1 || updating || loading2 || loading3) {
     return <Loader></Loader>
+  }
+  if (sending) {
+    toast('sending verification email')
   }
 
 
@@ -44,6 +53,7 @@ const Signup = () => {
   const handleSubmit = async () => {
     await createUserWithEmailAndPassword(email, password)
     await updateProfile({ displayName })
+    await sendEmailVerification();
   }
 
 
@@ -91,6 +101,7 @@ const Signup = () => {
 
         </div>
       </div>
+      <Toaster></Toaster>
     </div>
   );
 };

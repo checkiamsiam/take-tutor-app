@@ -1,4 +1,4 @@
-# take tutor an independent service providor website
+# Take-tutor an independent service providor website
 
 live site link [https://take-tutor.web.app/](https://take-tutor.web.app/).
 

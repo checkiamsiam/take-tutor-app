@@ -24,11 +24,10 @@ const Login = () => {
   const [sendPasswordResetEmail, sending, error4] = useSendPasswordResetEmail(
     auth
   );
-
-  error1 && console.log(error1.message);
-  error2 && console.log(error2.message);
-  error3 && console.log(error3.message);
-  error4 && console.log(error4.message);
+  // error1 && console.log(error1.message);
+  // error2 && console.log(error2.message);
+  // error3 && console.log(error3.message);
+  // error4 && console.log(error4.message);
 
   if (loading1 || loading2 || loading3) {
     return <Loader></Loader>

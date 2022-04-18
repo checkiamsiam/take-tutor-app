@@ -13,6 +13,7 @@ const Login = () => {
   const [agree, setAgree] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setpassword] = useState('');
+  const [errorMessege, setErrorMessege] = useState();
   const [
     signInWithEmailAndPassword,
     user1,
@@ -50,9 +51,15 @@ const Login = () => {
     await signInWithGoogle()
     await navigate(from, { replace: true });
   }
+
+
   const handleSubmit = async () => {
     await signInWithEmailAndPassword(email, password)
-    await navigate(from, { replace: true });
+    if (user1) {
+      await navigate(from, { replace: true });
+    } else {
+      await setErrorMessege('Your entire email or password is incorrect')
+    }
   }
   const handleReset = async () => {
     if (email) {
@@ -63,7 +70,7 @@ const Login = () => {
           border: '1px solid pink',
         },
       })
-    }else{
+    } else {
       await toast('enter email first', {
         style: {
           marginTop: '30vh',
@@ -110,6 +117,7 @@ const Login = () => {
           <label className="block text-sm mb-4">
             <input onClick={handleCheck} type="checkbox" /> agree terms and conditions
           </label>
+          <p className='text-red-600 m-5 '>{errorMessege}</p>
           <button
             onClick={handleSubmit}
             className="block w-full bg-orange-400 hover:bg-orange-500 text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline disabled:bg-orange-600"

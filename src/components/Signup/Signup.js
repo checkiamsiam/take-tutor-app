@@ -54,6 +54,7 @@ const Signup = () => {
     await createUserWithEmailAndPassword(email, password)
     await updateProfile({ displayName })
     await sendEmailVerification();
+    await toast('verification email sent');
   }
 
 

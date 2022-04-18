@@ -1,9 +1,11 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const ServicesCard = ({ service }) => {
   const navigate = useNavigate();
-  const path = `services/${service.id}`;
+  const location = useLocation();
+  console.log(location.pathname);
+  let path = `/services/${service.id}`;
   return (
     <div className="px-4 md:w-1/3 relative mt-2">
       <div className="h-full rounded-xl shadow-cla-blue bg-gradient-to-r from-indigo-50 to-blue-50 overflow-hidden">

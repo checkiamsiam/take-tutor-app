@@ -8,8 +8,8 @@ const About = () => {
     <div>
       <div className="container">
         <div className="container mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 h-screen">
-            <div className="max-h-96 md:h-screen">
+          <div className="grid grid-cols-1 md:grid-cols-2">
+            <div>
               <img className="w-screen h-screen object-cover object-top" src={profile} alt="" />
             </div>
             <div className="flex bg-gray-100 p-10">

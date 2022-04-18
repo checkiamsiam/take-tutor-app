@@ -10,8 +10,8 @@ const Header = () => {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   return (
-    <div>
-      <nav className="bg-gray-50 border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-800">
+    <div className='w-full sticky top-0 z-20'>
+      <nav className="bg-[rgba(247,244,244,0.71)] border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-800">
         <div className="container flex flex-wrap justify-between items-center mx-auto">
           <Link to="/" className="flex items-center text-lg">
             <img src={logo} className="mr-3 h-9 sm:h-10 rounded-full" alt="Flowbite Logo" />

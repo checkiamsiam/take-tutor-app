@@ -55,13 +55,22 @@ const Login = () => {
     await navigate(from, { replace: true });
   }
   const handleReset = async () => {
-    await sendPasswordResetEmail(email);
-    await toast('Reset mail sent.', {
-      style: {
-        marginTop: '30vh',
-        border: '1px solid pink',
-      },
-    })
+    if (email) {
+      await sendPasswordResetEmail(email);
+      await toast('Reset mail sent.', {
+        style: {
+          marginTop: '30vh',
+          border: '1px solid pink',
+        },
+      })
+    }else{
+      await toast('enter email first', {
+        style: {
+          marginTop: '30vh',
+          border: '1px solid pink',
+        },
+      })
+    }
   }
   return (
     <div className='container mx-auto my-5'>
